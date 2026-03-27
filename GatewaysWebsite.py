@@ -56,7 +56,7 @@ with tab2:
     else:
         event_feedback = df[df["Event Type"] == selected_event_text]["Feedback on Fest"]
     text = " ".join(event_feedback)
-    st.subheader("Word Cloud")
+    st.subheader(f"Word Cloud - {selected_event_text}")
     wordcloud = WordCloud(width = 800, height = 400, background_color = "white").generate(text)
     fig, ax = plt.subplots()
     ax.imshow(wordcloud, interpolation = "bilinear")
