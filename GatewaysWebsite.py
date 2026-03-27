@@ -36,7 +36,7 @@ with tab1:
     st.subheader("State-wise Participation Map")
     state_counts = data["State"].value_counts().reset_index()
     state_counts.columns = ["State", "count"]
-    india_map = gpd.read_file("India_State_Boundary.shp")
+    india_map = gpd.read_file("./India_State_Boundary.shp")
     india_map["State_Name"] = india_map["State_Name"].str.upper()
     state_counts["State"] = state_counts["State"].str.upper()
     merged = india_map.merge(state_counts, left_on = "State_Name", right_on = "State", how = "left")
@@ -50,8 +50,11 @@ with tab1:
 with tab2:
     st.title("Feedback Analysis")
 
-    selected_event_text = st.selectbox("Select Event Type for Feedback Analysis", df["Event Type"].unique())
-    event_feedback = df[df["Event Type"] == selected_event_text]["Feedback on Fest"]
+    selected_event_text = st.selectbox("Select Event Type for Feedback Analysis", ["All"] + list(df["Event Type"].unique()))
+    if selected_event_text == "All":
+        event_feedback = df["Feedback on Fest"]
+    else:
+        event_feedback = df[df["Event Type"] == selected_event_text]["Feedback on Fest"]
     text = " ".join(event_feedback)
     st.subheader("Word Cloud")
     wordcloud = WordCloud(width = 800, height = 400, background_color = "white").generate(text)
