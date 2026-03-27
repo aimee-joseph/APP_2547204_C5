@@ -3,7 +3,7 @@ pandas
 numpy
 matplotlib
 wordcloud
-geopandas==0.13.2
-fiona==1.9.5
-shapely==2.0.1
-pyproj==3.6.1
+geopandas
+fiona
+shapely
+pyproj
