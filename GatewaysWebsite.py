@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import geopandas as gpd
 from wordcloud import WordCloud
+import os
+os.environ["SHAPE_RESTORE_SHX"] = "YES"
 
 
 st.set_page_config(page_title = "Gateways Website", layout = "wide")
